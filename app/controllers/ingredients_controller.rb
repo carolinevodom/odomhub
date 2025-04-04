@@ -1,5 +1,5 @@
-class IngredientsController < ActiveRecord::Base
-  before_action :set_ingredient, only: %i[ show edit update destroy ]
+class IngredientsController < ApplicationController
+  layout 'application'
 
   # GET /ingredients or /ingredients.json
   def index
@@ -8,6 +8,8 @@ class IngredientsController < ActiveRecord::Base
 
   # GET /ingredients/1 or /ingredients/1.json
   def show
+    binding.pry
+    @ingredient = Ingredient.find(params['id'])
   end
 
   # GET /ingredients/new
@@ -21,7 +23,7 @@ class IngredientsController < ActiveRecord::Base
 
   # POST /ingredients or /ingredients.json
   def create
-    @ingredient = Ingredient.new(ingredient_params)
+    @ingredient = Ingredient.new(refined_ingredient_params)
 
     respond_to do |format|
       if @ingredient.save
@@ -36,6 +38,7 @@ class IngredientsController < ActiveRecord::Base
 
   # PATCH/PUT /ingredients/1 or /ingredients/1.json
   def update
+    set_ingredient
     respond_to do |format|
       if @ingredient.update(ingredient_params)
         format.html { redirect_to @ingredient, notice: "Ingredient was successfully updated." }
@@ -57,6 +60,11 @@ class IngredientsController < ActiveRecord::Base
     end
   end
 
+  def marked_empty
+    @ingredient = Ingredient.find(params['id'])
+    @ingredient.update!(marked_empty: Date.today)
+    respond_to do
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ingredient
@@ -66,5 +74,16 @@ class IngredientsController < ActiveRecord::Base
     # Only allow a list of trusted parameters through.
     def ingredient_params
       params.expect(ingredient: [ :name, :category, :updated_by, :last_purchased, :marked_empty ])
+    end
+
+    #Do necessary conversions to ingredient params as they come in
+    def refined_ingredient_params
+      refined_ingredient_params = {}
+      if ingredient_params['category'].is_a?(String)
+        refined_ingredient_params['category'] = ingredient_params['category'].to_i
+        binding.pry
+      end
+
+      ingredient_params.merge(refined_ingredient_params)
     end
 end
