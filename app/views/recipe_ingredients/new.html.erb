@@ -1,0 +1,18 @@
+
+<% content_for :title, "New recipe ingredient" %>
+
+<h1>Ingredients for <%= @recipe_ingredient.recipe.title %></h1>
+
+<% if @existing_recipe_ingredients.present? %>
+  <h2>Existing Ingredients</h2>
+  <%= render :partial => "added_ingredients", collection: @existing_recipe_ingredients, as: :existing_ingredient %>
+<% end %>
+
+
+<%= render "form", recipe_ingredient: @recipe_ingredient %>
+
+<br>
+
+<div>
+  <%= link_to "Back to recipe ingredients", recipe_ingredients_path %>
+</div>

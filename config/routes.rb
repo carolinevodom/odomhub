@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
-  resources :recipes
-  resources :ingredients
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
+  end
+  post "/graphql", to: "graphql#execute"
+  resources :recipe_ingredients 
+  resources :recipes do
+    resources :recipe_ingredients 
+  end  
+  resources :ingredients do
+    get :autocomplete_ingredient_name, :on => :collection
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -6,9 +6,16 @@ class IngredientsController < ApplicationController
     @ingredients = Ingredient.all
   end
 
+   # GET /recipes/search
+   def search
+    @ingredients = Ingredient.where(category: params[:category])
+
+    render partial: 'ingredients/ingredient_autocomplete_element', collection: @ingredients, as: :ingredient
+    
+ 
+
   # GET /ingredients/1 or /ingredients/1.json
   def show
-    binding.pry
     @ingredient = Ingredient.find(params['id'])
   end
 
@@ -63,7 +70,8 @@ class IngredientsController < ApplicationController
   def marked_empty
     @ingredient = Ingredient.find(params['id'])
     @ingredient.update!(marked_empty: Date.today)
-    respond_to do
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -81,7 +89,6 @@ class IngredientsController < ApplicationController
       refined_ingredient_params = {}
       if ingredient_params['category'].is_a?(String)
         refined_ingredient_params['category'] = ingredient_params['category'].to_i
-        binding.pry
       end
 
       ingredient_params.merge(refined_ingredient_params)

@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= javascript_importmap_tags %>
+    <%= javascript_import_module_tag "application" %>
+    <%= javascript_import_module_tag "controllers" %>
+    <%= combobox_style_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+
   </head>
   
   <body>

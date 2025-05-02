@@ -66,3 +66,12 @@ group :test do
 end
 
 gem "pry", "~> 0.15.2"
+
+gem "graphql", "~> 2.5"
+gem "graphiql-rails", group: :development
+
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'hotwire_combobox'
+
+gem "dartsass-sprockets", "~> 3.2"

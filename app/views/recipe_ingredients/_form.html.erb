@@ -1,0 +1,44 @@
+<%= form_with(model: recipe_ingredient) do |form| %>
+  <% if recipe_ingredient.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(recipe_ingredient.errors.count, "error") %> prohibited this recipe_ingredient from being saved:</h2>
+
+      <ul>
+        <% recipe_ingredient.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <h2>Add Ingredient to Recipe: <%= recipe_ingredient.recipe.title %></h2>
+    <input type="hidden" name="recipe_ingredient[recipe_id]" value="<%= recipe_ingredient.recipe.id %>">
+  </div>
+
+  <div>
+		<% form.label :ingredient_id, style: "display: block" %>
+    <%= form.combobox :ingredient_id, Ingredient.all %>
+  </div>
+
+  <div>
+    <%= form.label :measurement, style: "display: block" %>
+    <%= form.text_field :measurement %>
+  </div>
+
+  <div>
+    <%= form.label :unit, style: "display: block" %>
+    <%= form.select :unit, RecipeIngredient.units %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<script>
+  document.getElementById("recipe_ingredient_ingredient_id-hw-hidden-field").value = "";
+  document.getElementById("recipe_ingredient_measurement").value = "";
+</script>
+
+

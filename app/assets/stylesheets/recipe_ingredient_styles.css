@@ -1,0 +1,10 @@
+existing_ingredient_name {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-right: 10px;
+}
+existing_ingredient_details {
+  font-size: 1em;
+  color: #555;
+  float: left;
+}

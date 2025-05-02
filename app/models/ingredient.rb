@@ -1,8 +1,12 @@
 class Ingredient < ActiveRecord::Base
-    enum :category, [:dairy, :meat, :vegetable, :fruit, :starch, :spice, :snacks, :other] 
+	enum :category, [:dairy, :meat, :vegetable, :fruit, :starch, :spice, :snacks, :other] 
 
-    #Validations
+	#Validations
 
-    validates :name, presence: true, uniqueness: true
-    validates :category, presence: true, inclusion: { in: categories.keys }
+	validates :name, presence: true, uniqueness: true
+	validates :category, presence: true, inclusion: { in: categories.keys }
+
+	def to_combobox_display
+		name
+	end
 end
