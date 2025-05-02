@@ -17,28 +17,26 @@
   </div>
 
   <div>
+    <p> Choose an ingredient:</p>
 		<% form.label :ingredient_id, style: "display: block" %>
     <%= form.combobox :ingredient_id, Ingredient.all %>
   </div>
 
   <div>
     <%= form.label :measurement, style: "display: block" %>
-    <%= form.text_field :measurement %>
+    <%= form.number_field :measurement, step: 0.25, value: recipe_ingredient.measurement %>
   </div>
 
   <div>
     <%= form.label :unit, style: "display: block" %>
-    <%= form.select :unit, RecipeIngredient.units %>
+    <%= form.select :unit, RecipeIngredient.units, selected: recipe_ingredient.read_attribute_before_type_cast(:unit) %>
   </div>
 
-  <div>
+
+  <div class="recipe_ingredient_submit">
     <%= form.submit %>
   </div>
 <% end %>
 
-<script>
-  document.getElementById("recipe_ingredient_ingredient_id-hw-hidden-field").value = "";
-  document.getElementById("recipe_ingredient_measurement").value = "";
-</script>
 
 

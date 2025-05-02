@@ -1,10 +1,29 @@
-existing_ingredient_name {
+.existing_ingredient_name {
   font-size: 1.2em;
   font-weight: bold;
   margin-right: 10px;
+  float: left;
 }
-existing_ingredient_details {
+.existing_ingredient_details {
   font-size: 1em;
   color: #555;
   float: left;
+}
+.existing_ingredient_unit{
+  font-size: 1em;
+  color: #555;
+}
+.recipe_ingredient_submit {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+}
+.existing_ingredient_edit_button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

@@ -8,4 +8,8 @@
   <div class="existing_ingredient_details">
     <%= existing_ingredient.unit %>
   </div>
+  <button class="existing_ingredient_edit_button">
+    <%= link_to "Edit", edit_recipe_recipe_ingredient_path(existing_ingredient.recipe_id, existing_ingredient) %>
+  </button>
 </section>
+<br></br>

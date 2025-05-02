@@ -18,6 +18,9 @@ before_action
 
   # GET /recipe_ingredients/1/edit
   def edit
+    @recipe_ingredient = RecipeIngredient.find(params[:id])
+    @existing_recipe_ingredients = RecipeIngredient.preload(:ingredient).where(recipe_id: params[:recipe_id].to_i).to_a.reject { |ri| ri.id == @recipe_ingredient.id }
+
   end
 
   # POST /recipe_ingredients or /recipe_ingredients.json

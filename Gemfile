@@ -74,4 +74,4 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'hotwire_combobox'
 
-gem "dartsass-sprockets", "~> 3.2"
+gem "dartsass-rails", "~> 0.5.1"
