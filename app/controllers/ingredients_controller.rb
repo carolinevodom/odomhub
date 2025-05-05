@@ -6,14 +6,6 @@ class IngredientsController < ApplicationController
     @ingredients = Ingredient.all
   end
 
-   # GET /recipes/search
-   def search
-    @ingredients = Ingredient.where(category: params[:category])
-
-    render partial: 'ingredients/ingredient_autocomplete_element', collection: @ingredients, as: :ingredient
-    
- 
-
   # GET /ingredients/1 or /ingredients/1.json
   def show
     @ingredient = Ingredient.find(params['id'])
