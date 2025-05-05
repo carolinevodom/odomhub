@@ -24,7 +24,7 @@
 
   <div>
     <%= form.label :measurement, style: "display: block" %>
-    <%= form.number_field :measurement, step: 0.25, value: recipe_ingredient.measurement %>
+    <%= form.number_field :measurement, step: :any, value: recipe_ingredient.measurement %>
   </div>
 
   <div>

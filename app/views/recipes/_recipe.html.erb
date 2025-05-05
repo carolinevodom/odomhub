@@ -1,13 +1,18 @@
 <div id="<%= dom_id recipe %>">
-  <p>
+  <p class="recipe_name">
     <strong>Title:</strong>
     <%= recipe.title %>
   </p>
 
-  <p>
+  <p class="recipe_details">
     <strong>Last Made:</strong>
     <%= recipe.last_made %>
   </p>
+
+  <button class="show_recipe_button">
+    <%= link_to "Show this recipe", recipe %>
+  </button>
+
 
 
 </div>

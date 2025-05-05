@@ -19,6 +19,8 @@ controllers/recipe_ingredients_controller.js
 application.css
 )
 
+Rails.application.config.dartsass.builds = {
+  "application.scss" => "application.css"}
 
 
 # Add additional assets to the asset load path.

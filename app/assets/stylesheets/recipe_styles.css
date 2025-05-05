@@ -1,0 +1,25 @@
+.recipe_name {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.recipe_details {
+  font-size: 1.2em;
+  margin-left: 20px;
+  margin-top: 27px;
+  display:inline;
+}
+.new_recipe_button {
+  font-size: 2em;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.show_recipe_button {
+  font-size: 1.2em;
+  margin-left: 20px;
+  display:inline;
+}
+.show_recipe_button:after {
+  content:"\a";
+  white-space: pre;
+}

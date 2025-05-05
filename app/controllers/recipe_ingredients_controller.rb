@@ -40,14 +40,12 @@ before_action
 
   # PATCH/PUT /recipe_ingredients/1 or /recipe_ingredients/1.json
   def update
-    respond_to do |format|
-      if @recipe_ingredient.update(recipe_ingredient_params)
-        format.html { redirect_to @recipe_ingredient, notice: "Recipe ingredient was successfully updated." }
-        format.json { render :show, status: :ok, location: @recipe_ingredient }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @recipe_ingredient.errors, status: :unprocessable_entity }
-      end
+    @recipe_ingredient = RecipeIngredient.find(params[:id])
+    binding.pry
+    if @recipe_ingredient.update(refined_recipe_ingredient_params)
+      redirect_to new_recipe_recipe_ingredient_path(recipe_id: @recipe_ingredient.recipe_id), notice: "Recipe Ingredient was successfully updated."
+    else
+      format.html { render :edit, status: :unprocessable_entity }
     end
   end
 
@@ -77,6 +75,10 @@ before_action
       refined_recipe_ingredient_params = {}
       if recipe_ingredient_params['unit'].is_a?(String)
         refined_recipe_ingredient_params['unit'] = recipe_ingredient_params['unit'].to_i
+      end
+
+      if recipe_ingredient_params['measurement'].is_a?(String)
+        refined_recipe_ingredient_params['measurement'] = recipe_ingredient_params['measurement'].to_f
       end
 
       recipe_ingredient_params.merge(refined_recipe_ingredient_params)
